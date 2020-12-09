@@ -23,13 +23,11 @@ class App extends Component {
 
   handleChange = (e) => {
     const {name, value} = e.target;
-    console.log(name, value);
     this.setState(prevState => {
       let school = Object.assign({}, prevState.school);
       school[name] = value;
       return { school };                                
     })
-    console.log(this.state.school);
   };
 
   onSubmitTask = (e) =>{
@@ -42,13 +40,13 @@ class App extends Component {
   }
 
   resetForm = () => {
-    this.setState({
-      school: { ...this.state.school,
-        schoolName : " ",
-        careerTitle : " ",
-        initialDate : " ",
-        endDate : " "
-      }
+    this.setState((prevState) => {
+      let school = Object.assign({}, prevState.school);
+      school["schoolName"] = " ";
+      school["careerTitle"] = " ";
+      school["initialDate"] = " ";
+      school["endDate"] = " ";
+      return { school };                       
     })
   }
 
@@ -72,7 +70,7 @@ class App extends Component {
             <label htmlFor="schoolInput">Enter School</label>
             <input
               onChange={this.handleChange}
-              value={school.schoolName.value}
+              value={school.schoolName}
               type="text"
               name="schoolName"
             />
@@ -80,7 +78,7 @@ class App extends Component {
             <label>Enter Career</label>
             <input
               onChange={this.handleChange}
-              value={school.careerTitle.value}
+              value={school.careerTitle}
               type="text"
               name="careerTitle"
             />
@@ -88,7 +86,7 @@ class App extends Component {
             <label>Enter Initial Date</label>
             <input
               onChange={this.handleChange}
-              value={school.initialDate.value}
+              value={school.initialDate}
               type="text"
               name="initialDate"
             />
@@ -96,7 +94,7 @@ class App extends Component {
             <label>Enter Final Date</label>
             <input
               onChange={this.handleChange}
-              value={school.endDate.value}
+              value={school.endDate}
               type="text"
               name="endDate"
             />
