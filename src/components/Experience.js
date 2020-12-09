@@ -1,21 +1,27 @@
-const Experience = (props) =>{
-    const {companyName, positionTitle, mainTasks, initialDate, endDate} = props;
+import React from "react";
+import uniqid from "uniqid";
+import CompanyItem from "./CompanyItem";
 
+const Experience = (props) =>{
+    const {companies} = props;
+    
     return (
-        <div className="experienceDiv">
-            <h2>Experience information</h2>
-            <div>
-                <button className="editButton">
-                    Edit
-                </button>
-            </div>
-            <p>{companyName}</p>
-            <p>{positionTitle}</p>
-            <p>{mainTasks}</p>
-            <p>{initialDate}</p>
-            <p>{endDate}</p>
-        </div>
+        <div key={uniqid()}>
+      {companies.map((company) => {
+          return (
+              <CompanyItem 
+                companyName={company.schoolName}
+                positionTitle={company.careerTitle}
+                mainTasks={company.mainTasks}
+                initialDate={company.initialDate}
+                endDate={company.endDate}
+                key={uniqid()}
+              />
+          )
+      })}
+    </div>
     )
+
 }
 
 export default Experience;

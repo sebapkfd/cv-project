@@ -8,13 +8,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      school : {
+      school: {
         schoolName: " ",
         careerTitle: " ",
         initialDate: " ",
         endDate: " "
       },
-      schools : []
+      schools: [],
+      company: {
+        companyName: " ",
+        positionTitle: " ",
+        mainTasks: " ",
+        initialDate: " ",
+        endDate: " ",
+      },
+      companies: []
+
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,6 +31,7 @@ class App extends Component {
   }
 
   handleChange = (e) => {
+    console.log(e);
     const {name, value} = e.target;
     this.setState(prevState => {
       let school = Object.assign({}, prevState.school);
@@ -52,6 +62,7 @@ class App extends Component {
 
   render() {
     const {school, schools} = this.state;
+    const {company, companies} = this.state;
     
     return (
       <div className='App'>
@@ -107,21 +118,60 @@ class App extends Component {
         </form>
       </div>
       <Education schools={schools}/>
+      
+      <div className="formDiv">
+        <form onSubmit={this.onSubmitTask}>
+          <div className="form-group">
+            <label htmlFor="experienceInput">Enter Company Name</label>
+            <input
+              onChange={this.handleChange}
+              value={company.companyName}
+              type="text"
+              name="companyName"
+            />
+            <br/>
+            <label>Enter Position title</label>
+            <input
+              onChange={this.handleChange}
+              value={company.positionTitle}
+              type="text"
+              name="positionTitle"
+            />
+            <br/>
+            <label>Enter Desciption</label>
+            <input
+              onChange={this.handleChange}
+              value={company.mainTasks}
+              type="text"
+              name="mainTasks"
+            />
+            <br/>
+            <label>Enter Initial Date</label>
+            <input
+              onChange={this.handleChange}
+              value={company.initialDate}
+              type="text"
+              name="initialDate" //
+            />
+            <br/>
+            <label>Enter Final Date</label>
+            <input
+              onChange={this.handleChange}
+              value={company.endDate} 
+              type="text"
+              name="endDate" //
+            />
+          </div>
+          <div className="form-group">
+            <button type="submit" >
+              Add Company
+            </button>
+          </div>
+        </form>
+      </div>
 
-        {/* <Education 
-          schoolName = "Udp" 
-          careerTitle = "Software Engineer" 
-          initialDate = "March 1st, 2017" 
-          endDate = "December 1st, 2020"
-        /> */}
-        
-        {/* <Experience 
-          companyName = "Example"
-          positionTitle = "Software Engineer"
-          mainTasks = "Development"
-          initialDate = "December 2nd 2020"
-          endDate = "Current"
-        /> */}
+      <Experience companies={companies}/>
+
       </div>
     );
   }

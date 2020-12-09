@@ -1,6 +1,6 @@
 import React from "react";
 import uniqid from "uniqid";
-import SchoolItem from "./SchoolItem"
+import SchoolItem from "./SchoolItem";
 
 const Education = (props) =>{
     const {schools} = props;
@@ -17,7 +17,6 @@ const Education = (props) =>{
                 key={uniqid()}
               />
           )
-            
       })}
     </div>
     )
