@@ -1,15 +1,26 @@
-const Education = (props) =>{
-    const {schoolName, careerTitle, initialDate, endDate} = props;
+import React from "react";
+import uniqid from "uniqid";
+import SchoolItem from "./SchoolItem"
 
+const Education = (props) =>{
+    const {schools} = props;
+    
     return (
-        <div className="educationDiv">
-            <h2>Educational information</h2>
-            <p>{schoolName}</p>
-            <p>{careerTitle}</p>
-            <p>{initialDate}</p>
-            <p>{endDate}</p>
-        </div>
+        <div key={uniqid()}>
+      {schools.map((school) => {
+          return (
+              <SchoolItem 
+                schoolName={school.schoolName}
+                careerTitle={school.careerTitle}
+                initialDate={school.initialDate}
+                endDate={school.endDate}
+              />
+          )
+            
+      })}
+    </div>
     )
+
 }
 
 export default Education;

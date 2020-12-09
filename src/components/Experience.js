@@ -4,6 +4,11 @@ const Experience = (props) =>{
     return (
         <div className="experienceDiv">
             <h2>Experience information</h2>
+            <div>
+                <button className="editButton">
+                    Edit
+                </button>
+            </div>
             <p>{companyName}</p>
             <p>{positionTitle}</p>
             <p>{mainTasks}</p>
