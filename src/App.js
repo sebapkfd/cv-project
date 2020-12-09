@@ -14,14 +14,22 @@ class App extends Component {
         initialDate: " ",
         endDate: " "
       },
-      // school: "",
       schools : []
     }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitTask = this.onSubmitTask.bind(this);
   }
 
   handleChange = (e) => {
     const {name, value} = e.target;
-    this.setState({...this.state.school, [name] : value});
+    console.log(name, value);
+    this.setState(prevState => {
+      let school = Object.assign({}, prevState.school);
+      school[name] = value;
+      return { school };                                
+    })
+    console.log(this.state.school);
   };
 
   onSubmitTask = (e) =>{
@@ -72,7 +80,7 @@ class App extends Component {
             <label>Enter Career</label>
             <input
               onChange={this.handleChange}
-              defaultValue={school.careerTitle}
+              value={school.careerTitle.value}
               type="text"
               name="careerTitle"
             />
@@ -80,7 +88,7 @@ class App extends Component {
             <label>Enter Initial Date</label>
             <input
               onChange={this.handleChange}
-              defaultValue={school.initialDate}
+              value={school.initialDate.value}
               type="text"
               name="initialDate"
             />
@@ -88,7 +96,7 @@ class App extends Component {
             <label>Enter Final Date</label>
             <input
               onChange={this.handleChange}
-              defaultValue={school.endDate}
+              value={school.endDate.value}
               type="text"
               name="endDate"
             />

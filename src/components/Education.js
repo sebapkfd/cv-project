@@ -14,6 +14,7 @@ const Education = (props) =>{
                 careerTitle={school.careerTitle}
                 initialDate={school.initialDate}
                 endDate={school.endDate}
+                key={uniqid()}
               />
           )
             
