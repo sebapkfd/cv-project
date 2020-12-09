@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Title from "./components/Title";
+import General from "./components/General";
+import Education from "./components/Education";
+import Experience from "./components/Experience";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      aux : []
+    }
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <Title/>
+        
+        <General name="Sebastian" lastname="Soto" email="example@ex.com" phone="1111111"/>
+        
+        <Education schoolName = "Udp" 
+        careerTitle = "Software Engineer" 
+        initialDate = "March 1st, 2017" 
+        endDate = "December 1st, 2020"/>
+        
+        <Experience companyName = "Example"
+        positionTitle = "Software Engineer"
+        mainTasks = "Development"
+        initialDate = "December 2nd 2020"
+        endDate = "Current"
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
