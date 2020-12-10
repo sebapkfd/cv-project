@@ -10,12 +10,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Title/>
-        <General 
-          name="Sebastian" 
-          lastname="Soto" 
-          email="example@ex.com" 
-          phone="1111111"
-        />
+        <General/>
         <Education/>
         <Experience/>
       </div>

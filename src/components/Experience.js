@@ -52,7 +52,7 @@ class Experience extends Component{
     const {company, companies} = this.state;
 
     return (
-      <div>
+      <div className="ExperienceDiv">
         <div className="formDiv">
           <form onSubmit={this.onSubmitTask}>
             <div className="form-group">
@@ -72,7 +72,7 @@ class Experience extends Component{
                 name="positionTitle"
               />
               <br/>
-              <label>Enter Desciption</label>
+              <label>Enter Description</label>
               <input
                 onChange={this.handleChange}
                 value={company.mainTasks}
@@ -84,16 +84,16 @@ class Experience extends Component{
               <input
                 onChange={this.handleChange}
                 value={company.initialDate}
-                type="text"
-                name="initialDate" //
+                type="date"
+                name="initialDate"
               />
               <br/>
               <label>Enter Final Date</label>
               <input
                 onChange={this.handleChange}
-                value={company.endDate} 
-                type="text"
-                name="endDate" //
+                value={company.endDate}
+                type="date"
+                name="endDate"
               />
             </div>
             <div className="form-group">

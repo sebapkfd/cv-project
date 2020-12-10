@@ -19,12 +19,13 @@ class Education extends Component{
   handleChange = (e) => {
     console.log(e);
     const {name, value} = e.target;
+    
     this.setState(prevState => {
       let school = Object.assign({}, prevState.school);
       school[name] = value;
       return { school };                                
     })
-  }
+  };
 
   onSubmitTask = (e) =>{
     e.preventDefault();
@@ -33,7 +34,7 @@ class Education extends Component{
     })
 
     this.resetForm();
-  }
+  };
 
   resetForm = () => {
     this.setState((prevState) => {
@@ -44,13 +45,13 @@ class Education extends Component{
       school["endDate"] = " ";
       return { school };                       
     })
-  }
+  };
 
   render(){
     const {school, schools} = this.state;
 
     return (
-      <div className='App'>
+      <div className='EducationDiv'>
         <div className="formDiv">
           <form onSubmit={this.onSubmitTask}>
             <div className="form-group">
@@ -74,7 +75,7 @@ class Education extends Component{
               <input
                 onChange={this.handleChange}
                 value={school.initialDate}
-                type="text"
+                type="date"
                 name="initialDate"
               />
               <br/>
@@ -82,7 +83,7 @@ class Education extends Component{
               <input
                 onChange={this.handleChange}
                 value={school.endDate}
-                type="text"
+                type="date"
                 name="endDate"
               />
             </div>
