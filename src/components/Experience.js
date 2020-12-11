@@ -7,18 +7,17 @@ class Experience extends Component{
     super();
     this.state = {
       company: {
-        companyName: " ",
-        positionTitle: " ",
-        mainTasks: " ",
-        initialDate: " ",
-        endDate: " ",
+        companyName: "",
+        positionTitle: "",
+        mainTasks: "",
+        initialDate: "",
+        endDate: "",
       },
       companies: []
     }
   }
 
   handleChange = (e) => {
-    console.log(e);
     const {name, value} = e.target;
     this.setState(prevState => {
       let company = Object.assign({}, prevState.company);
@@ -29,21 +28,28 @@ class Experience extends Component{
 
   onSubmitTask = (e) =>{
     e.preventDefault();
-    this.setState({
-      companies: [...this.state.companies, this.state.company]
-    })
-
-    this.resetForm();
+    const {company}  = this.state;
+    let isValid = true;
+    for (let key in company){
+      isValid = (company[key] === "") ? false : true;
+      console.log(company[key], key);
+    }
+    if(isValid){
+      this.setState({
+        companies: [...this.state.companies, this.state.company]
+      })
+      this.resetForm();
+    }
   }
 
   resetForm = () => {
     this.setState((prevState) => {
       let company = Object.assign({}, prevState.company);
-      company["companyName"] = " ";
-      company["positionTitle"] = " ";
-      company["mainTasks"] = " ";
-      company["initialDate"] = " ";
-      company["endDate"] = " ";
+      company["companyName"] = "";
+      company["positionTitle"] = "";
+      company["mainTasks"] = "";
+      company["initialDate"] = "";
+      company["endDate"] = "";
       return { company };                       
     })
   }

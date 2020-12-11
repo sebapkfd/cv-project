@@ -7,17 +7,16 @@ class Education extends Component{
     super();
     this.state = {
       school: {
-        schoolName: " ",
-        careerTitle: " ",
-        initialDate: " ",
-        endDate: " "
+        schoolName: "",
+        careerTitle: "",
+        initialDate: "",
+        endDate: ""
       },
       schools: []
     }
   }
 
   handleChange = (e) => {
-    console.log(e);
     const {name, value} = e.target;
     
     this.setState(prevState => {
@@ -29,20 +28,26 @@ class Education extends Component{
 
   onSubmitTask = (e) =>{
     e.preventDefault();
-    this.setState({
-      schools: [...this.state.schools, this.state.school]
-    })
-
-    this.resetForm();
+    const {school} = this.state;
+    let isValid = true;
+    for (let key in school){
+      isValid = (school[key] === " ") ? false : true;
+    }
+    if(isValid){
+      this.setState({
+        schools: [...this.state.schools, this.state.school]
+      })
+      this.resetForm();
+    }
   };
 
   resetForm = () => {
     this.setState((prevState) => {
       let school = Object.assign({}, prevState.school);
-      school["schoolName"] = " ";
-      school["careerTitle"] = " ";
-      school["initialDate"] = " ";
-      school["endDate"] = " ";
+      school["schoolName"] = "";
+      school["careerTitle"] = "";
+      school["initialDate"] = "";
+      school["endDate"] = "";
       return { school };                       
     })
   };
@@ -96,18 +101,17 @@ class Education extends Component{
         </div>
         <div key={uniqid()}>
           {schools.map((school) => {
-              return (
-                  <SchoolItem 
-                    schoolName={school.schoolName}
-                    careerTitle={school.careerTitle}
-                    initialDate={school.initialDate}
-                    endDate={school.endDate}
-                    key={uniqid()}
-                  />
-              )
+            return (
+              <SchoolItem 
+                schoolName={school.schoolName}
+                careerTitle={school.careerTitle}
+                initialDate={school.initialDate}
+                endDate={school.endDate}
+                key={uniqid()}
+              />
+            )
           })}
         </div>
-
       </div>
   )}
 }
