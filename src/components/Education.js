@@ -7,6 +7,7 @@ class Education extends Component{
     super();
     this.state = {
       school: {
+        id: uniqid(),
         schoolName: "",
         careerTitle: "",
         initialDate: "",
@@ -18,7 +19,6 @@ class Education extends Component{
 
   handleChange = (e) => {
     const {name, value} = e.target;
-    
     this.setState(prevState => {
       let school = Object.assign({}, prevState.school);
       school[name] = value;
@@ -46,6 +46,7 @@ class Education extends Component{
   resetForm = () => {
     this.setState((prevState) => {
       let school = Object.assign({}, prevState.school);
+      school["id"] = uniqid();
       school["schoolName"] = "";
       school["careerTitle"] = "";
       school["initialDate"] = "";
@@ -53,6 +54,11 @@ class Education extends Component{
       return { school };                       
     })
   };
+
+  handleDelete = (itemId) => {
+    const schools = this.state.schools.filter( school => school.id !== itemId);
+    this.setState({schools : schools})
+  }
 
   render(){
     const {school, schools} = this.state;
@@ -109,7 +115,9 @@ class Education extends Component{
                 careerTitle={school.careerTitle}
                 initialDate={school.initialDate}
                 endDate={school.endDate}
+                id={school.id}
                 key={uniqid()}
+                onDelete={this.handleDelete}
               />
             )
           })}

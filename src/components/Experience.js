@@ -7,6 +7,7 @@ class Experience extends Component{
     super();
     this.state = {
       company: {
+        id: uniqid(),
         companyName: "",
         positionTitle: "",
         mainTasks: "",
@@ -46,6 +47,7 @@ class Experience extends Component{
   resetForm = () => {
     this.setState((prevState) => {
       let company = Object.assign({}, prevState.company);
+      company["id"] = uniqid();
       company["companyName"] = "";
       company["positionTitle"] = "";
       company["mainTasks"] = "";
@@ -53,6 +55,11 @@ class Experience extends Component{
       company["endDate"] = "";
       return { company };                       
     })
+  }
+
+  handleDelete = (itemId) => {
+    const companies = this.state.companies.filter( company => company.id !== itemId);
+    this.setState({ companies : companies})
   }
 
   render() {
@@ -120,6 +127,8 @@ class Experience extends Component{
                     initialDate={company.initialDate}
                     endDate={company.endDate}
                     key={uniqid()}
+                    id={company.id}
+                    onDelete={this.handleDelete}
                   />
               )
           })}

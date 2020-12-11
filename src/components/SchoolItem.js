@@ -14,6 +14,9 @@ const SchoolItem = (props) =>{
             <p key={uniqid()}>Career: {careerTitle}</p>
             <p key={uniqid()}>From: {initialDateFormat}</p>
             <p key={uniqid()}>Until: {endDateFormat}</p>
+            <button onClick={() => props.onDelete(props.id)}>
+                Delete
+            </button>
         </div>
     )
 }
