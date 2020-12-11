@@ -74,12 +74,8 @@ class Education extends Component{
         <div key={uniqid()}>
           {schools.map((school) => {
             return (
-              <SchoolItem 
-                schoolName={school.schoolName}
-                careerTitle={school.careerTitle}
-                initialDate={school.initialDate}
-                endDate={school.endDate}
-                id={school.id}
+              <SchoolItem
+                school={school}
                 key={uniqid()}
                 onDelete={this.handleDelete}
               />

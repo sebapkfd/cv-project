@@ -4,7 +4,7 @@ import dateFormat from "./dateFormat";
 
 const CompanyItem = (props) =>{
     
-    const {companyName, positionTitle, mainTasks,initialDate, endDate} = props;
+    const {companyName, positionTitle, mainTasks, initialDate, endDate, id} = props.company;
     const initialDateFormat = dateFormat(initialDate);
     const endDateFormat = dateFormat(endDate);
 
@@ -15,7 +15,7 @@ const CompanyItem = (props) =>{
             <p key={uniqid()}>Description: {mainTasks}</p>
             <p key={uniqid()}>From: {initialDateFormat}</p>
             <p key={uniqid()}>Until: {endDateFormat}</p>
-            <button onClick={() => props.onDelete(props.id)}>
+            <button onClick={() => props.onDelete(id)}>
                 Delete
             </button>
         </div>

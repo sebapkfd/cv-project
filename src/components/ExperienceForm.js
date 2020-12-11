@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class EducationForm extends Component{
+class ExperienceForm extends Component{
 
     changeData = (e) =>{
         e.preventDefault();
@@ -13,32 +13,39 @@ class EducationForm extends Component{
     }
 
     render() {
-        const {school} = this.props;
-
+        const {company} = this.props;
         return (
             <div className="formDiv">
                 <form onSubmit={this.submitData}>
                     <div className="form-group">
-                    <label htmlFor="schoolInput">Enter School</label>
+                    <label htmlFor="experienceInput">Enter Company Name</label>
                     <input
                         onChange={this.changeData}
-                        value={school.schoolName}
+                        value={company.companyName}
                         type="text"
-                        name="schoolName"
+                        name="companyName"
                     />
                     <br/>
-                    <label>Enter Career</label>
+                    <label>Enter Position title</label>
                     <input
                         onChange={this.changeData}
-                        value={school.careerTitle}
+                        value={company.positionTitle}
                         type="text"
-                        name="careerTitle"
+                        name="positionTitle"
+                    />
+                    <br/>
+                    <label>Enter Description</label>
+                    <input
+                        onChange={this.changeData}
+                        value={company.mainTasks}
+                        type="text"
+                        name="mainTasks"
                     />
                     <br/>
                     <label>Enter Initial Date</label>
                     <input
                         onChange={this.changeData}
-                        value={school.initialDate}
+                        value={company.initialDate}
                         type="date"
                         name="initialDate"
                     />
@@ -46,14 +53,14 @@ class EducationForm extends Component{
                     <label>Enter Final Date</label>
                     <input
                         onChange={this.changeData}
-                        value={school.endDate}
+                        value={company.endDate}
                         type="date"
                         name="endDate"
                     />
                     </div>
                     <div className="form-group">
                     <button type="submit" >
-                        Add School
+                        Add Company
                     </button>
                     </div>
                 </form>
@@ -62,4 +69,4 @@ class EducationForm extends Component{
     }
 }
 
-export default EducationForm;
+export default ExperienceForm;

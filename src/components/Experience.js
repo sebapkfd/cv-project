@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import uniqid from "uniqid";
 import CompanyItem from "./CompanyItem";
+import ExperienceForm from "./ExperienceForm";
 
 class Experience extends Component{
   constructor() {
@@ -67,67 +68,17 @@ class Experience extends Component{
 
     return (
       <div className="ExperienceDiv">
-        <div className="formDiv">
-          <form onSubmit={this.onSubmitTask}>
-            <div className="form-group">
-              <label htmlFor="experienceInput">Enter Company Name</label>
-              <input
-                onChange={this.handleChange}
-                value={company.companyName}
-                type="text"
-                name="companyName"
-              />
-              <br/>
-              <label>Enter Position title</label>
-              <input
-                onChange={this.handleChange}
-                value={company.positionTitle}
-                type="text"
-                name="positionTitle"
-              />
-              <br/>
-              <label>Enter Description</label>
-              <input
-                onChange={this.handleChange}
-                value={company.mainTasks}
-                type="text"
-                name="mainTasks"
-              />
-              <br/>
-              <label>Enter Initial Date</label>
-              <input
-                onChange={this.handleChange}
-                value={company.initialDate}
-                type="date"
-                name="initialDate"
-              />
-              <br/>
-              <label>Enter Final Date</label>
-              <input
-                onChange={this.handleChange}
-                value={company.endDate}
-                type="date"
-                name="endDate"
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" >
-                Add Company
-              </button>
-            </div>
-          </form>
-        </div>
+        <ExperienceForm
+          company={company}
+          onSubmit={this.onSubmitTask}
+          onChange={this.handleChange}
+        />
         <div key={uniqid()}>
           {companies.map((company) => {
               return (
                   <CompanyItem 
-                    companyName={company.companyName}
-                    positionTitle={company.positionTitle}
-                    mainTasks={company.mainTasks}
-                    initialDate={company.initialDate}
-                    endDate={company.endDate}
+                    company={company}
                     key={uniqid()}
-                    id={company.id}
                     onDelete={this.handleDelete}
                   />
               )
