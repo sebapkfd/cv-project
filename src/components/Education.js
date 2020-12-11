@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import SchoolItem from "./SchoolItem";
+import EducationForm from "./EducationForm";
 
 class Education extends Component{
   constructor(){
@@ -65,48 +66,11 @@ class Education extends Component{
 
     return (
       <div className='EducationDiv'>
-        <div className="formDiv">
-          <form onSubmit={this.onSubmitTask}>
-            <div className="form-group">
-              <label htmlFor="schoolInput">Enter School</label>
-              <input
-                onChange={this.handleChange}
-                value={school.schoolName}
-                type="text"
-                name="schoolName"
-              />
-              <br/>
-              <label>Enter Career</label>
-              <input
-                onChange={this.handleChange}
-                value={school.careerTitle}
-                type="text"
-                name="careerTitle"
-              />
-              <br/>
-              <label>Enter Initial Date</label>
-              <input
-                onChange={this.handleChange}
-                value={school.initialDate}
-                type="date"
-                name="initialDate"
-              />
-              <br/>
-              <label>Enter Final Date</label>
-              <input
-                onChange={this.handleChange}
-                value={school.endDate}
-                type="date"
-                name="endDate"
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" >
-                Add School
-              </button>
-            </div>
-          </form>
-        </div>
+        <EducationForm
+          school={school}
+          onSubmit={this.onSubmitTask}
+          onChange={this.handleChange}
+        />
         <div key={uniqid()}>
           {schools.map((school) => {
             return (
