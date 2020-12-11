@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import GeneralForm from "./GeneralForm"
 
 class General extends Component{
   constructor() {
@@ -39,28 +40,7 @@ class General extends Component{
     const {name, lastname, phone, email} = this.state;
     return (
       <div className="GeneralDiv">
-        <div className="formDiv">
-          <form onSubmit={this.handleSubmit} id="generalInfoForm">
-            <div className="form-group">
-              <label htmlFor="generalInput">Enter Name</label>
-              <input type="text" name="name"/>
-              <br/>
-              <label>Enter Career</label>
-              <input type="text" name="lastname"/>
-              <br/>
-              <label>Enter Phone</label>
-              <input type="text" name="phone"/>
-              <br/>
-              <label>Enter Email</label>
-              <input type="text" name="email"/>
-            </div>
-            <div className="form-group">
-              <button type="submit" >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+        <GeneralForm onSubmit={this.handleSubmit}/>
         <div>
           <button>
             Edit
