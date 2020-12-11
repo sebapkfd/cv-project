@@ -31,7 +31,9 @@ class Education extends Component{
     const {school} = this.state;
     let isValid = true;
     for (let key in school){
-      isValid = (school[key] === " ") ? false : true;
+      if (school[key] === "") {
+        isValid = false;
+      }
     }
     if(isValid){
       this.setState({

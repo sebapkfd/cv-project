@@ -31,8 +31,9 @@ class Experience extends Component{
     const {company}  = this.state;
     let isValid = true;
     for (let key in company){
-      isValid = (company[key] === "") ? false : true;
-      console.log(company[key], key);
+      if (company[key] === "") {
+      isValid = false;
+      }
     }
     if(isValid){
       this.setState({
