@@ -16,13 +16,13 @@ class Education extends Component{
       schools: []
     }
   }
-
+  
   handleChange = (e) => {
     const {name, value} = e.target;
     this.setState(prevState => {
       let school = Object.assign({}, prevState.school);
       school[name] = value;
-      return { school };                                
+      return { school };
     })
   };
 
