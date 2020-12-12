@@ -71,12 +71,12 @@ class Education extends Component{
           onSubmit={this.onSubmitTask}
           onChange={this.handleChange}
         />
-        <div key={uniqid()}>
+        <div>
           {schools.map((school) => {
             return (
               <SchoolItem
+                key={school.id}
                 school={school}
-                key={uniqid()}
                 onDelete={this.handleDelete}
               />
             )

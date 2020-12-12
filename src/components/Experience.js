@@ -73,12 +73,12 @@ class Experience extends Component{
           onSubmit={this.onSubmitTask}
           onChange={this.handleChange}
         />
-        <div key={uniqid()}>
+        <div>
           {companies.map((company) => {
               return (
                   <CompanyItem 
+                    key={company.id}
                     company={company}
-                    key={uniqid()}
                     onDelete={this.handleDelete}
                   />
               )

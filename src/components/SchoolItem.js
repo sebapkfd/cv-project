@@ -1,5 +1,4 @@
 import React from "react";
-import uniqid from "uniqid";
 import dateFormat from "./dateFormat";
 
 const SchoolItem = (props) =>{
@@ -9,11 +8,11 @@ const SchoolItem = (props) =>{
     const endDateFormat = dateFormat(endDate);
 
     return (
-        <div className="schoolItemDiv" key={uniqid()}>
-            <p key={uniqid()}>School: {schoolName}</p>
-            <p key={uniqid()}>Career: {careerTitle}</p>
-            <p key={uniqid()}>From: {initialDateFormat}</p>
-            <p key={uniqid()}>Until: {endDateFormat}</p>
+        <div className="schoolItemDiv">
+            <p>School: {schoolName}</p>
+            <p>Career: {careerTitle}</p>
+            <p>From: {initialDateFormat}</p>
+            <p>Until: {endDateFormat}</p>
             <button onClick={() => props.onDelete(id)}>
                 Delete
             </button>
