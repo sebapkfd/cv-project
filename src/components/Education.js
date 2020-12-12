@@ -58,7 +58,7 @@ class Education extends Component{
 
   handleDelete = (itemId) => {
     const schools = this.state.schools.filter( school => school.id !== itemId);
-    this.setState({schools : schools})
+    this.setState({schools : schools});
   }
 
   render(){

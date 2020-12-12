@@ -3,6 +3,7 @@ import Title from "./components/Title";
 import General from "./components/General";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
+import Skills from "./components/Skills";
 
 class App extends Component {
 
@@ -13,6 +14,7 @@ class App extends Component {
         <General/>
         <Education/>
         <Experience/>
+        <Skills/>
       </div>
     );
   }

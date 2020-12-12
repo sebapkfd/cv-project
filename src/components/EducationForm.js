@@ -19,42 +19,42 @@ class EducationForm extends Component{
             <div className="formDiv">
                 <form onSubmit={this.submitData}>
                     <div className="form-group">
-                    <label htmlFor="schoolInput">Enter School</label>
-                    <input
-                        onChange={this.changeData}
-                        value={school.schoolName}
-                        type="text"
-                        name="schoolName"
-                    />
-                    <br/>
-                    <label>Enter Career</label>
-                    <input
-                        onChange={this.changeData}
-                        value={school.careerTitle}
-                        type="text"
-                        name="careerTitle"
-                    />
-                    <br/>
-                    <label>Enter Initial Date</label>
-                    <input
-                        onChange={this.changeData}
-                        value={school.initialDate}
-                        type="date"
-                        name="initialDate"
-                    />
-                    <br/>
-                    <label>Enter Final Date</label>
-                    <input
-                        onChange={this.changeData}
-                        value={school.endDate}
-                        type="date"
-                        name="endDate"
-                    />
+                        <label htmlFor="schoolInput">Enter School</label>
+                        <input
+                            onChange={this.changeData}
+                            value={school.schoolName}
+                            type="text"
+                            name="schoolName"
+                        />
+                        <br/>
+                        <label>Enter Career</label>
+                        <input
+                            onChange={this.changeData}
+                            value={school.careerTitle}
+                            type="text"
+                            name="careerTitle"
+                        />
+                        <br/>
+                        <label>Enter Initial Date</label>
+                        <input
+                            onChange={this.changeData}
+                            value={school.initialDate}
+                            type="date"
+                            name="initialDate"
+                        />
+                        <br/>
+                        <label>Enter Final Date</label>
+                        <input
+                            onChange={this.changeData}
+                            value={school.endDate}
+                            type="date"
+                            name="endDate"
+                        />
                     </div>
                     <div className="form-group">
-                    <button type="submit" >
-                        Add School
-                    </button>
+                        <button type="submit" >
+                            Add School
+                        </button>
                     </div>
                 </form>
             </div>
