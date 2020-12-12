@@ -17,7 +17,7 @@ class General extends Component{
     const profile = {
       name : e.target.name.value,
       lastname : e.target.lastname.value,
-      phone : e.target.lastname.value,
+      phone : e.target.phone.value,
       email : e.target.email.value
     }
     let isValid = true;
@@ -28,19 +28,14 @@ class General extends Component{
     }
     if(isValid){
       this.setState(profile)
-      this.resetForm();
     }
-  }
-
-  resetForm = () => {
-    document.getElementById("generalInfoForm").reset();
   }
   
   render() {
     const {name, lastname, phone, email} = this.state;
     return (
       <div className="GeneralDiv">
-        <GeneralForm onSubmit={this.handleSubmit}/>
+        <GeneralForm onSubmit={this.handleSubmit} values={this.state}/>
         <div>
           <button>
             Edit
