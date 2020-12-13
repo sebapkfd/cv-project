@@ -54,6 +54,11 @@ class Skills extends Component{
         const skills = this.state.skills.filter( skill => skill.id !== itemId);
         this.setState({skills : skills});
     }
+
+    cleanSkills = (e) => {
+        e.preventDefault();
+        this.setState({skills: []})
+    }
     
     render() {
         const {skill, skills} = this.state;
@@ -64,6 +69,11 @@ class Skills extends Component{
                     onSubmit={this.onSubmitTask}
                     onChange={this.handleChange}
                 />
+                <div>
+                    <button onClick={this.cleanSkills}>
+                        Clean
+                    </button>
+                </div>
                 <div>
                     {skills.map((skill) => {
                         return (

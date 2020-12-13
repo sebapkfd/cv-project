@@ -63,6 +63,11 @@ class Experience extends Component{
     this.setState({ companies : companies})
   }
 
+  cleanExperience = (e) => {
+    e.preventDefault();
+    this.setState({companies: []})
+  }
+
   render() {
     const {company, companies} = this.state;
 
@@ -73,6 +78,11 @@ class Experience extends Component{
           onSubmit={this.onSubmitTask}
           onChange={this.handleChange}
         />
+        <div>
+          <button onClick={this.cleanExperience}>
+            Clean
+          </button>
+        </div>
         <div>
           {companies.map((company) => {
               return (

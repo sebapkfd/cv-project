@@ -30,12 +30,28 @@ class General extends Component{
       this.setState(profile)
     }
   }
+
+  cleanInfo = (e) => {
+    e.preventDefault();
+    const profile = {
+      name : "",
+      lastname : "",
+      phone : "",
+      email : ""
+    };
+    this.setState(profile);
+  }
   
   render() {
     const {name, lastname, phone, email} = this.state;
     return (
       <div className="GeneralDiv">
         <GeneralForm onSubmit={this.handleSubmit} values={this.state}/>
+        <div>
+          <button onClick={this.cleanInfo}>
+            Clean
+          </button>
+        </div>
         <div>
           <button>
             Edit

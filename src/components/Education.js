@@ -61,6 +61,11 @@ class Education extends Component{
     this.setState({schools : schools});
   }
 
+  cleanEducation = (e) =>{
+    e.preventDefault();
+    this.setState({schools: [] });
+  }
+
   render(){
     const {school, schools} = this.state;
 
@@ -71,6 +76,11 @@ class Education extends Component{
           onSubmit={this.onSubmitTask}
           onChange={this.handleChange}
         />
+        <div>
+          <button onClick={this.cleanEducation}>
+            Clean
+          </button>
+        </div>
         <div>
           {schools.map((school) => {
             return (
