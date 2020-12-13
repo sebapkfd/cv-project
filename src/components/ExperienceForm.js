@@ -12,6 +12,11 @@ class ExperienceForm extends Component{
         this.props.onSubmit(e);
     }
 
+    cancelSubmit = (e) =>{
+        e.preventDefault();
+        this.props.onRender(e);
+    }
+
     render() {
         const {company} = this.props;
         return (
@@ -62,6 +67,11 @@ class ExperienceForm extends Component{
                     <button type="submit" >
                         Add Company
                     </button>
+                    </div>
+                    <div className="form-group">
+                        <button onClick={this.cancelSubmit}>
+                            Cancel
+                        </button>
                     </div>
                 </form>
             </div>

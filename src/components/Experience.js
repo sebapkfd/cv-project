@@ -15,12 +15,14 @@ class Experience extends Component{
         initialDate: "",
         endDate: "",
       },
-      companies: []
+      companies: [],
+      formActive : false
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitCompany = this.submitCompany.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.cleanExperience = this.cleanExperience.bind(this);
+    this.renderForm = this.renderForm.bind(this);
   }
 
   handleChange = (e) => {
@@ -45,7 +47,7 @@ class Experience extends Component{
       this.setState({
         companies: [...this.state.companies, this.state.company]
       });
-      this.resetForm();
+      this.renderForm(e);
     }
   }
 
@@ -72,21 +74,44 @@ class Experience extends Component{
     this.setState({companies: []});
   }
 
+  renderForm = (e) => {
+    e.preventDefault();
+    const {formActive} = this.state;
+    this.setState({formActive : !formActive});
+    this.resetForm();
+  }
+
   render() {
-    const {company, companies} = this.state;
+    const {company, companies, formActive} = this.state;
+    let formComponent;
+    let formButton;
+    let cleanButton;
+    if(formActive) {
+      formComponent = <ExperienceForm
+        company={company}
+        onSubmit={this.submitCompany}
+        onChange={this.handleChange}
+        onRender={this.renderForm}
+      />
+    }else{
+      formButton = <div>
+        <button onClick={this.renderForm}>Add Job</button>
+      </div>
+    }
+
+    if(companies.length > 0) {
+      cleanButton = <div>
+        <button onClick={this.cleanExperience}>Clean</button>
+      </div>
+    }
 
     return (
       <div className="ExperienceDiv">
-        <ExperienceForm
-          company={company}
-          onSubmit={this.submitCompany}
-          onChange={this.handleChange}
-        />
-        <div>
-          <button onClick={this.cleanExperience}>
-            Clean
-          </button>
-        </div>
+        <h2>Experience</h2>
+        {formButton}
+        {formComponent}
+        {cleanButton}
+        
         <div>
           {companies.map((company) => {
               return (

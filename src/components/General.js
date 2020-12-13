@@ -5,13 +5,18 @@ class General extends Component{
   constructor() {
     super();
     this.state = {
-      name: "",
-      lastname: "",
-      phone: "",
-      email: ""
-    };
+      info : {
+        name: "",
+        lastname: "",
+        phone: "",
+        email: ""
+      },
+      formActive: false,
+      infoAdded: false
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.cleanInfo = this.cleanInfo.bind(this);
+    this.renderForm = this.renderForm.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -29,7 +34,9 @@ class General extends Component{
       }
     }
     if(isValid){
-      this.setState(profile);
+      this.setState({info : profile});
+      this.setState({infoAdded: true});
+      this.renderForm(e);
     }
   }
 
@@ -41,24 +48,53 @@ class General extends Component{
       phone : "",
       email : ""
     };
-    this.setState(profile);
+    this.setState({info: profile});
+    this.setState({infoAdded: false});
+    this.setState({formActive : false})
   }
-  
+
+  renderForm = (e) => {
+    e.preventDefault();
+    const {formActive} = this.state;
+    this.setState({formActive : !formActive});
+  }
+
   render() {
-    const {name, lastname, phone, email} = this.state;
+    const {name, lastname, phone, email} = this.state.info;
+    const {formActive, infoAdded} = this.state;
+    let formComponent;
+    let formButton;
+    let cleanButton;
+    if(formActive) {
+      formComponent = <GeneralForm 
+        onSubmit={this.handleSubmit} 
+        values={this.state.info}
+        onRender={this.renderForm}
+      />
+    }else{
+      formButton = (infoAdded) ? (
+        <div>
+          <button onClick={this.renderForm} >Add Information</button>
+       </div>
+      ) : (
+        <div>
+          <button onClick={this.renderForm} >Edit Information</button>
+       </div>
+      )
+    }
+
+    if(infoAdded){
+      cleanButton = <div>
+          <button onClick={this.cleanInfo}>Clean</button>
+      </div>
+    }
+
     return (
       <div className="GeneralDiv">
-        <GeneralForm onSubmit={this.handleSubmit} values={this.state}/>
-        <div>
-          <button onClick={this.cleanInfo}>
-            Clean
-          </button>
-        </div>
-        <div>
-          <button>
-            Edit
-          </button>
-        </div>
+        <h2>Personal Information</h2>
+        {formButton}
+        {formComponent}
+        {cleanButton}
         <p>Name: {name}</p>
         <p>Last Name:{lastname}</p>
         <p>Phone:{phone}</p>

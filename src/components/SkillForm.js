@@ -11,6 +11,11 @@ class SkillForm extends Component{
         e.preventDefault();
         this.props.onSubmit(e);
     }
+    
+    cancelSubmit = (e) => {
+        e.preventDefault();
+        this.props.onRender(e);
+    }
 
     render() {
         const {skill} = this.props;
@@ -30,6 +35,11 @@ class SkillForm extends Component{
                     <div className="form-group">
                         <button type="submit" >
                             Add Skill
+                        </button>
+                    </div>
+                    <div className="form-group">
+                        <button onClick={this.cancelSubmit}>
+                            Cancel
                         </button>
                     </div>
                 </form>

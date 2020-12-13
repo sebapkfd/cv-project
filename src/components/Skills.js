@@ -11,12 +11,14 @@ class Skills extends Component{
                 id: uniqid(),
                 skillName: ""
             },
-            skills: []
+            skills: [],
+            formActive: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitSkill = this.submitSkill.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.cleanSkills = this.cleanSkills.bind(this);
+        this.renderForm = this.renderForm.bind(this);
     }
 
     handleChange = (e) => {
@@ -41,7 +43,7 @@ class Skills extends Component{
             this.setState({
                 skills: [...this.state.skills, this.state.skill]
             });
-            this.resetForm();
+            this.renderForm(e);
         }
     }
 
@@ -63,21 +65,44 @@ class Skills extends Component{
         e.preventDefault();
         this.setState({skills: []});
     }
+
+    renderForm = (e) => {
+        e.preventDefault();
+        const {formActive} = this.state;
+        this.setState({formActive : !formActive});
+        this.resetForm();
+    }
     
     render() {
-        const {skill, skills} = this.state;
+        const {skill, skills, formActive} = this.state;
+        let formComponent;
+        let formButton;
+        let cleanButton;
+        if(formActive) {
+        formComponent = <SkillForm
+                skill={skill}
+                onSubmit={this.submitSkill}
+                onChange={this.handleChange}
+                onRender={this.renderForm}
+            />
+        }else{
+        formButton = <div>
+            <button onClick={this.renderForm}>Add Skill</button>
+        </div>
+        }
+
+        if(skills.length > 0){
+            cleanButton = <div>
+              <button onClick={this.cleanSkills}>Clean</button>
+            </div>
+        }
+
         return (
             <div className="SkillsDiv">
-                <SkillForm
-                    skill={skill}
-                    onSubmit={this.submitSkill}
-                    onChange={this.handleChange}
-                />
-                <div>
-                    <button onClick={this.cleanSkills}>
-                        Clean
-                    </button>
-                </div>
+                <h2>Skills</h2>
+                {formButton}
+                {formComponent}
+                {cleanButton}
                 <div>
                     {skills.map((skill) => {
                         return (
