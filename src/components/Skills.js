@@ -14,7 +14,7 @@ class Skills extends Component{
             skills: []
         };
         this.handleChange = this.handleChange.bind(this);
-        this.onSubmitTask = this.onSubmitTask.bind(this);
+        this.submitSkill = this.submitSkill.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.cleanSkills = this.cleanSkills.bind(this);
     }
@@ -28,7 +28,7 @@ class Skills extends Component{
         });
     }
 
-    onSubmitTask = (e) =>{
+    submitSkill = (e) =>{
         e.preventDefault();
         const {skill} = this.state;
         let isValid = true;
@@ -70,7 +70,7 @@ class Skills extends Component{
             <div className="SkillsDiv">
                 <SkillForm
                     skill={skill}
-                    onSubmit={this.onSubmitTask}
+                    onSubmit={this.submitSkill}
                     onChange={this.handleChange}
                 />
                 <div>

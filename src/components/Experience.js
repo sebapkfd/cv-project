@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import uniqid from "uniqid";
-import CompanyItem from "./CompanyItem";
+import ExperienceItem from "./ExperienceItem";
 import ExperienceForm from "./ExperienceForm";
 
 class Experience extends Component{
@@ -18,7 +18,7 @@ class Experience extends Component{
       companies: []
     };
     this.handleChange = this.handleChange.bind(this);
-    this.onSubmitTask = this.onSubmitTask.bind(this);
+    this.submitCompany = this.submitCompany.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.cleanExperience = this.cleanExperience.bind(this);
   }
@@ -32,7 +32,7 @@ class Experience extends Component{
     })
   }
 
-  onSubmitTask = (e) =>{
+  submitCompany = (e) =>{
     e.preventDefault();
     const {company}  = this.state;
     let isValid = true;
@@ -79,7 +79,7 @@ class Experience extends Component{
       <div className="ExperienceDiv">
         <ExperienceForm
           company={company}
-          onSubmit={this.onSubmitTask}
+          onSubmit={this.submitCompany}
           onChange={this.handleChange}
         />
         <div>
@@ -90,7 +90,7 @@ class Experience extends Component{
         <div>
           {companies.map((company) => {
               return (
-                  <CompanyItem 
+                  <ExperienceItem 
                     key={company.id}
                     company={company}
                     onDelete={this.handleDelete}

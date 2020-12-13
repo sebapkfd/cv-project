@@ -1,16 +1,17 @@
 import React from "react";
 import dateFormat from "./dateFormat";
 
-const SchoolItem = (props) =>{
+const ExperienceItem = (props) =>{
     
-    const {schoolName, careerTitle, initialDate, endDate, id} = props.school;
+    const {companyName, positionTitle, mainTasks, initialDate, endDate, id} = props.company;
     const initialDateFormat = dateFormat(initialDate);
     const endDateFormat = dateFormat(endDate);
 
     return (
-        <div className="schoolItemDiv">
-            <p>School: {schoolName}</p>
-            <p>Career: {careerTitle}</p>
+        <div className="companyItemDiv">
+            <p>Company: {companyName}</p>
+            <p>Position: {positionTitle}</p>
+            <p>Description: {mainTasks}</p>
             <p>From: {initialDateFormat}</p>
             <p>Until: {endDateFormat}</p>
             <button onClick={() => props.onDelete(id)}>
@@ -20,4 +21,4 @@ const SchoolItem = (props) =>{
     )
 }
 
-export default SchoolItem;
+export default ExperienceItem;

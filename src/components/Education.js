@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
-import SchoolItem from "./SchoolItem";
+import EducationItem from "./EducationItem";
 import EducationForm from "./EducationForm";
 
 class Education extends Component{
@@ -17,7 +17,7 @@ class Education extends Component{
       schools: []
     };
     this.handleChange = this.handleChange.bind(this);
-    this.onSubmitTask = this.onSubmitTask.bind(this);
+    this.submitSchool = this.submitSchool.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.cleanEducation = this.cleanEducation.bind(this);
   }
@@ -31,7 +31,7 @@ class Education extends Component{
     });
   }
 
-  onSubmitTask = (e) =>{
+  submitSchool = (e) =>{
     e.preventDefault();
     const {school} = this.state;
     let isValid = true;
@@ -77,7 +77,7 @@ class Education extends Component{
       <div className='EducationDiv'>
         <EducationForm
           school={school}
-          onSubmit={this.onSubmitTask}
+          onSubmit={this.submitSchool}
           onChange={this.handleChange}
         />
         <div>
@@ -88,7 +88,7 @@ class Education extends Component{
         <div>
           {schools.map((school) => {
             return (
-              <SchoolItem
+              <EducationItem
                 key={school.id}
                 school={school}
                 onDelete={this.handleDelete}
