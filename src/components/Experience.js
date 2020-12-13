@@ -16,7 +16,11 @@ class Experience extends Component{
         endDate: "",
       },
       companies: []
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitTask = this.onSubmitTask.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.cleanExperience = this.cleanExperience.bind(this);
   }
 
   handleChange = (e) => {
@@ -40,7 +44,7 @@ class Experience extends Component{
     if(isValid){
       this.setState({
         companies: [...this.state.companies, this.state.company]
-      })
+      });
       this.resetForm();
     }
   }
@@ -60,12 +64,12 @@ class Experience extends Component{
 
   handleDelete = (itemId) => {
     const companies = this.state.companies.filter( company => company.id !== itemId);
-    this.setState({ companies : companies})
+    this.setState({ companies : companies});
   }
 
   cleanExperience = (e) => {
     e.preventDefault();
-    this.setState({companies: []})
+    this.setState({companies: []});
   }
 
   render() {

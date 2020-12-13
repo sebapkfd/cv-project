@@ -9,7 +9,9 @@ class General extends Component{
       lastname: "",
       phone: "",
       email: ""
-    } 
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.cleanInfo = this.cleanInfo.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -19,7 +21,7 @@ class General extends Component{
       lastname : e.target.lastname.value,
       phone : e.target.phone.value,
       email : e.target.email.value
-    }
+    };
     let isValid = true;
     for (let key in profile){
       if(profile[key] === ""){
@@ -27,7 +29,7 @@ class General extends Component{
       }
     }
     if(isValid){
-      this.setState(profile)
+      this.setState(profile);
     }
   }
 

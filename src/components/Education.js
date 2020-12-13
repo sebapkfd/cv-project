@@ -15,7 +15,11 @@ class Education extends Component{
         endDate: ""
       },
       schools: []
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitTask = this.onSubmitTask.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.cleanEducation = this.cleanEducation.bind(this);
   }
   
   handleChange = (e) => {
@@ -24,8 +28,8 @@ class Education extends Component{
       let school = Object.assign({}, prevState.school);
       school[name] = value;
       return { school };
-    })
-  };
+    });
+  }
 
   onSubmitTask = (e) =>{
     e.preventDefault();
@@ -39,10 +43,10 @@ class Education extends Component{
     if(isValid){
       this.setState({
         schools: [...this.state.schools, this.state.school]
-      })
+      });
       this.resetForm();
     }
-  };
+  }
 
   resetForm = () => {
     this.setState((prevState) => {
@@ -53,8 +57,8 @@ class Education extends Component{
       school["initialDate"] = "";
       school["endDate"] = "";
       return { school };                       
-    })
-  };
+    });
+  }
 
   handleDelete = (itemId) => {
     const schools = this.state.schools.filter( school => school.id !== itemId);

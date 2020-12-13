@@ -12,7 +12,11 @@ class Skills extends Component{
                 skillName: ""
             },
             skills: []
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.onSubmitTask = this.onSubmitTask.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.cleanSkills = this.cleanSkills.bind(this);
     }
 
     handleChange = (e) => {
@@ -21,7 +25,7 @@ class Skills extends Component{
             let skill = Object.assign({}, prevState.skill);
             skill[name] = value;
             return {skill};
-        })
+        });
     }
 
     onSubmitTask = (e) =>{
@@ -36,7 +40,7 @@ class Skills extends Component{
         if(isValid){
             this.setState({
                 skills: [...this.state.skills, this.state.skill]
-            })
+            });
             this.resetForm();
         }
     }
@@ -47,7 +51,7 @@ class Skills extends Component{
             skill["id"] = uniqid();
             skill["skillName"] = "";
             return { skill};
-        })
+        });
     }
 
     handleDelete = (itemId) => {
@@ -57,7 +61,7 @@ class Skills extends Component{
 
     cleanSkills = (e) => {
         e.preventDefault();
-        this.setState({skills: []})
+        this.setState({skills: []});
     }
     
     render() {
