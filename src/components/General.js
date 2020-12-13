@@ -73,12 +73,12 @@ class General extends Component{
       />
     }else{
       formButton = (infoAdded) ? (
-        <div>
-          <button onClick={this.renderForm} >Add Information</button>
+        <div >
+          <button onClick={this.renderForm} className="sectionButton" >Add Information</button>
        </div>
       ) : (
         <div>
-          <button onClick={this.renderForm} >Edit Information</button>
+          <button onClick={this.renderForm} className="sectionButton" >Edit Information</button>
        </div>
       )
     }
@@ -91,8 +91,10 @@ class General extends Component{
 
     return (
       <div className="GeneralDiv">
-        <h2>Personal Information</h2>
-        {formButton}
+        <div className="sectionTitleDiv">
+          <h2>Personal Information</h2>
+          {formButton}
+        </div>
         {formComponent}
         {cleanButton}
         <p>Name: {name}</p>

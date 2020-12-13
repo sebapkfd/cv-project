@@ -95,7 +95,7 @@ class Experience extends Component{
       />
     }else{
       formButton = <div>
-        <button onClick={this.renderForm}>Add Job</button>
+        <button onClick={this.renderForm} className="sectionButton" >Add Job</button>
       </div>
     }
 
@@ -107,8 +107,10 @@ class Experience extends Component{
 
     return (
       <div className="ExperienceDiv">
-        <h2>Experience</h2>
-        {formButton}
+        <div className="sectionTitleDiv">
+          <h2>Experience</h2>
+          {formButton}
+        </div>
         {formComponent}
         {cleanButton}
         

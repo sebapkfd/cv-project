@@ -86,8 +86,8 @@ class Skills extends Component{
                 onRender={this.renderForm}
             />
         }else{
-        formButton = <div>
-            <button onClick={this.renderForm}>Add Skill</button>
+        formButton = <div >
+            <button onClick={this.renderForm} className="sectionButton" >Add Skill</button>
         </div>
         }
 
@@ -99,8 +99,10 @@ class Skills extends Component{
 
         return (
             <div className="SkillsDiv">
-                <h2>Skills</h2>
-                {formButton}
+                <div className="sectionTitleDiv">
+                    <h2>Skills</h2>
+                    {formButton}
+                </div>
                 {formComponent}
                 {cleanButton}
                 <div>
