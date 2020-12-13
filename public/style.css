@@ -1,8 +1,17 @@
 body{
-    background-color: rgb(49, 49, 49);
+    background-color: rgb(15, 57, 66);
     display: flex;
     justify-content: center;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif; 
+}
+
+a{
+    color: white;
+}
+
+input{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #root{
@@ -10,6 +19,8 @@ body{
     display: flex;
     justify-content: center;
     background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 46, 57);
+    color: white;
     border-radius: 5px;
 }
 
@@ -18,13 +29,10 @@ body{
     width: 100%;
 }
 
-h1{
-    text-align: center;
-    color: rgb(26, 26, 26);
-}
-
-h2{
-    color: rgb(71, 71, 71);
+.titleDiv{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .sectionTitleDiv{
@@ -34,12 +42,20 @@ h2{
     padding: auto 1rem;
 }
 
+.SkillsDiv{
+    margin-bottom: 1rem;
+}
+
+.skillItemDiv{
+    display: flex;
+}
+
 Button{
     margin: auto 1rem;
     border: none;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(15, 57, 66);
     color: rgb(255, 255, 255);
-    border-radius: 5px;
+    border-radius: 10px;
     height: 1.5rem;
     padding: 0 1.5rem;
     font-weight: 400;
@@ -47,10 +63,11 @@ Button{
 }
 
 Button:hover{
-    color: rgb(78, 78, 78);
+    color: rgb(0, 46, 57);
     background-color: rgb(255, 255, 255);
 }
 
-input{
-    margin-left: 1rem;
+.buttonsDiv{
+    margin-top: 1rem;
+    display: flex;
 }

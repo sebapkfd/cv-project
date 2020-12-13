@@ -23,39 +23,44 @@ class ExperienceForm extends Component{
             <div className="formDiv">
                 <form onSubmit={this.submitData}>
                     <div className="form-group">
-                    <label htmlFor="experienceInput">Enter Company Name</label>
+                    <label htmlFor="experienceInput">Company Name</label>
+                    <br></br>
                     <input
                         onChange={this.changeData}
                         value={company.companyName}
                         type="text"
                         name="companyName"
                     />
-                    <br/>
-                    <label>Enter Position title</label>
+                    <br></br>
+                    <label>Position title</label>
+                    <br></br>
                     <input
                         onChange={this.changeData}
                         value={company.positionTitle}
                         type="text"
                         name="positionTitle"
                     />
-                    <br/>
-                    <label>Enter Description</label>
+                    <br></br>
+                    <label>Description</label>
+                    <br></br>
                     <input
                         onChange={this.changeData}
                         value={company.mainTasks}
                         type="text"
                         name="mainTasks"
                     />
-                    <br/>
-                    <label>Enter Initial Date</label>
+                    <br></br>
+                    <label>Initial Date</label>
+                    <br></br>
                     <input
                         onChange={this.changeData}
                         value={company.initialDate}
                         type="date"
                         name="initialDate"
                     />
-                    <br/>
-                    <label>Enter Final Date</label>
+                    <br></br>
+                    <label>Final Date</label>
+                    <br></br>
                     <input
                         onChange={this.changeData}
                         value={company.endDate}
@@ -63,12 +68,10 @@ class ExperienceForm extends Component{
                         name="endDate"
                     />
                     </div>
-                    <div className="form-group">
-                    <button type="submit" >
-                        Add Company
-                    </button>
-                    </div>
-                    <div className="form-group">
+                    <div className="buttonsDiv">
+                        <button type="submit" >
+                            Add Company
+                        </button>
                         <button onClick={this.cancelSubmit}>
                             Cancel
                         </button>

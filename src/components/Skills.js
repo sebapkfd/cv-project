@@ -102,9 +102,9 @@ class Skills extends Component{
                 <div className="sectionTitleDiv">
                     <h2>Skills</h2>
                     {formButton}
+                    {cleanButton}
                 </div>
                 {formComponent}
-                {cleanButton}
                 <div>
                     {skills.map((skill) => {
                         return (

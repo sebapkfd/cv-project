@@ -25,6 +25,7 @@ class SkillForm extends Component{
                 <form onSubmit={this.submitData}>
                     <div className="form-group">
                         <label htmlFor="skillInput">Enter Skill</label>
+                        <br></br>
                         <input
                             onChange={this.changeData}
                             value={skill.skillName}
@@ -32,12 +33,10 @@ class SkillForm extends Component{
                             name="skillName"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="buttonsDiv">
                         <button type="submit" >
                             Add Skill
                         </button>
-                    </div>
-                    <div className="form-group">
                         <button onClick={this.cancelSubmit}>
                             Cancel
                         </button>

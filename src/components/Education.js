@@ -108,9 +108,9 @@ class Education extends Component{
         <div className="sectionTitleDiv">
           <h2>Education</h2>
           {formButton}
+          {cleanButton}
         </div>
         {formComponent}
-        {cleanButton}
         
         <div>
           {schools.map((school) => {

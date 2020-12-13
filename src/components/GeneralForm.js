@@ -18,24 +18,26 @@ class GeneralForm extends Component{
           <div className="formDiv">
             <form onSubmit={this.submitData} id="generalInfoForm">
               <div className="form-group">
-                <label htmlFor="generalInput">Enter Name</label>
+                <label htmlFor="generalInput">Name</label>
+                <br></br>
                 <input type="text" name="name" defaultValue={values.name}/>
-                <br/>
-                <label>Enter Career</label>
+                <br></br>
+                <label>Career</label>
+                <br></br>
                 <input type="text" name="lastname" defaultValue={values.lastname}/>
-                <br/>
-                <label>Enter Phone</label>
+                <br></br>
+                <label>Phone</label>
+                <br></br>
                 <input type="text" name="phone" defaultValue={values.phone}/>
-                <br/>
-                <label>Enter Email</label>
+                <br></br>
+                <label>Email</label>
+                <br></br>
                 <input type="text" name="email" defaultValue={values.email}/>
               </div>
-              <div className="form-group">
+              <div className="buttonsDiv">
                 <button type="submit" >
                   Submit
                 </button>
-              </div>
-              <div className="form-group">
                 <button onClick={this.cancelSubmit}>
                   Cancel
                 </button>

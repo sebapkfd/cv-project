@@ -110,9 +110,9 @@ class Experience extends Component{
         <div className="sectionTitleDiv">
           <h2>Experience</h2>
           {formButton}
+          {cleanButton}
         </div>
         {formComponent}
-        {cleanButton}
         
         <div>
           {companies.map((company) => {

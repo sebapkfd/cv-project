@@ -72,7 +72,7 @@ class General extends Component{
         onRender={this.renderForm}
       />
     }else{
-      formButton = (infoAdded) ? (
+      formButton = (!infoAdded) ? (
         <div >
           <button onClick={this.renderForm} className="sectionButton" >Add Information</button>
        </div>
@@ -94,9 +94,9 @@ class General extends Component{
         <div className="sectionTitleDiv">
           <h2>Personal Information</h2>
           {formButton}
+          {cleanButton}
         </div>
         {formComponent}
-        {cleanButton}
         <p>Name: {name}</p>
         <p>Last Name:{lastname}</p>
         <p>Phone:{phone}</p>

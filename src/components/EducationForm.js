@@ -25,30 +25,34 @@ class EducationForm extends Component{
                 <form onSubmit={this.submitData}>
                     <div className="form-group">
                         <label htmlFor="schoolInput">Enter School</label>
+                        <br></br>
                         <input
                             onChange={this.changeData}
                             value={school.schoolName}
                             type="text"
                             name="schoolName"
                         />
-                        <br/>
+                        <br></br>
                         <label>Enter Career</label>
+                        <br></br>
                         <input
                             onChange={this.changeData}
                             value={school.careerTitle}
                             type="text"
                             name="careerTitle"
                         />
-                        <br/>
+                        <br></br>
                         <label>Enter Initial Date</label>
+                        <br></br>
                         <input
                             onChange={this.changeData}
                             value={school.initialDate}
                             type="date"
                             name="initialDate"
                         />
-                        <br/>
+                        <br></br>
                         <label>Enter Final Date</label>
+                        <br></br>
                         <input
                             onChange={this.changeData}
                             value={school.endDate}
@@ -56,12 +60,10 @@ class EducationForm extends Component{
                             name="endDate"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="buttonsDiv">
                         <button type="submit" >
                             Add School
                         </button>
-                    </div>
-                    <div className="form-group">
                         <button onClick={this.cancelSubmit}>
                             Cancel
                         </button>
