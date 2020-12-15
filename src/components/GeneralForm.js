@@ -15,33 +15,33 @@ const GeneralForm = (props) => {
     const values = props.values;
     return (
         <div className="formDiv">
-        <form onSubmit={submitData} id="generalInfoForm">
-            <div className="form-group">
-            <label htmlFor="generalInput">Name</label>
-            <br></br>
-            <input type="text" name="name" defaultValue={values.name}/>
-            <br></br>
-            <label>Career</label>
-            <br></br>
-            <input type="text" name="lastname" defaultValue={values.lastname}/>
-            <br></br>
-            <label>Phone</label>
-            <br></br>
-            <input type="text" name="phone" defaultValue={values.phone}/>
-            <br></br>
-            <label>Email</label>
-            <br></br>
-            <input type="text" name="email" defaultValue={values.email}/>
-            </div>
-            <div className="buttonsDiv">
-            <button type="submit" >
-                Submit
-            </button>
-            <button onClick={cancelSubmit}>
-                Cancel
-            </button>
-            </div>
-        </form>
+            <form onSubmit={submitData} id="generalInfoForm">
+                <div className="form-group">
+                    <label htmlFor="generalInput">Name</label>
+                    <br></br>
+                    <input type="text" name="name" defaultValue={values.name}/>
+                    <br></br>
+                    <label>Career</label>
+                    <br></br>
+                    <input type="text" name="lastname" defaultValue={values.lastname}/>
+                    <br></br>
+                    <label>Phone</label>
+                    <br></br>
+                    <input type="text" name="phone" defaultValue={values.phone}/>
+                    <br></br>
+                    <label>Email</label>
+                    <br></br>
+                    <input type="text" name="email" defaultValue={values.email}/>
+                </div>
+                <div className="buttonsDiv">
+                    <button type="submit" >
+                        Submit
+                    </button>
+                <button onClick={cancelSubmit}>
+                    Cancel
+                </button>
+                </div>
+            </form>
         </div>
     )
 }

@@ -64,43 +64,42 @@ const Education = () => {
     let formButton;
     let cleanButton;
     if(formActive) {
-      formComponent = <EducationForm
-        school={school}
-        onSubmit={submitSchool}
-        onChange={handleChange}
-        onRender={renderForm}
-      />
+        formComponent = <EducationForm
+            school={school}
+            onSubmit={submitSchool}
+            onChange={handleChange}
+            onRender={renderForm}
+        />
     }else{
-      formButton = <div>
-        <button onClick={renderForm} className="sectionButton" >Add School</button>
-      </div>
+        formButton = <div>
+            <button onClick={renderForm} className="sectionButton" >Add School</button>
+        </div>
     }
 
     if(schools.length > 0){
-      cleanButton = <div>
-        <button onClick={cleanEducation}>Clean</button>
-      </div>
+        cleanButton = <div>
+            <button onClick={cleanEducation}>Clean</button>
+        </div>
     }
 
     return (
-      <div className='EducationDiv'>
+    <div className='EducationDiv'>
         <div className="sectionTitleDiv">
-          <h2>Education</h2>
-          {formButton}
-          {cleanButton}
+            <h2>Education</h2>
+            {formButton}
+            {cleanButton}
         </div>
         {formComponent}
-        
         <div>
-          {schools.map((school) => {
-            return (
-              <EducationItem
-                key={school.id}
-                school={school}
-                onDelete={handleDelete}
-              />
-            )
-          })}
+            {schools.map((school) => {
+                return (
+                    <EducationItem
+                    key={school.id}
+                    school={school}
+                    onDelete={handleDelete}
+                    />
+                )
+            })}
         </div>
       </div>
     );
