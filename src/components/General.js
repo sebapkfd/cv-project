@@ -1,110 +1,96 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import GeneralForm from "./GeneralForm"
 
-class General extends Component{
-  constructor() {
-    super();
-    this.state = {
-      info : {
+const General = () => {
+    const [info, setInfo] = useState({
         name: "",
         lastname: "",
         phone: "",
         email: ""
-      },
-      formActive: false,
-      infoAdded: false
+    });
+    const [formActive, setFormActive] = useState(false);
+    const [infoAdded, setInfoAdded] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const profile = {
+            name : e.target.name.value,
+            lastname : e.target.lastname.value,
+            phone : e.target.phone.value,
+            email : e.target.email.value
+        };
+        let isValid = true;
+        for (let key in profile){
+            if(profile[key] === ""){
+                isValid = false;
+            }
+        }
+        if(isValid){
+            setInfo(profile);
+            setInfoAdded(true);
+            renderForm(e);
+        }
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.cleanInfo = this.cleanInfo.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-  }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const profile = {
-      name : e.target.name.value,
-      lastname : e.target.lastname.value,
-      phone : e.target.phone.value,
-      email : e.target.email.value
-    };
-    let isValid = true;
-    for (let key in profile){
-      if(profile[key] === ""){
-        isValid = false;
-      }
+    const cleanInfo = (e) => {
+        e.preventDefault();
+        setInfo({
+            name : "",
+            lastname : "",
+            phone : "",
+            email : ""
+        })
+        setInfoAdded(false);
+        setFormActive(false);
     }
-    if(isValid){
-      this.setState({info : profile});
-      this.setState({infoAdded: true});
-      this.renderForm(e);
+
+    const renderForm = (e) => {
+        e.preventDefault();
+        setFormActive(!formActive);
     }
-  }
 
-  cleanInfo = (e) => {
-    e.preventDefault();
-    const profile = {
-      name : "",
-      lastname : "",
-      phone : "",
-      email : ""
-    };
-    this.setState({info: profile});
-    this.setState({infoAdded: false});
-    this.setState({formActive : false})
-  }
-
-  renderForm = (e) => {
-    e.preventDefault();
-    const {formActive} = this.state;
-    this.setState({formActive : !formActive});
-  }
-
-  render() {
-    const {name, lastname, phone, email} = this.state.info;
-    const {formActive, infoAdded} = this.state;
+    const {name, lastname, phone, email} = info;
     let formComponent;
     let formButton;
     let cleanButton;
     if(formActive) {
-      formComponent = <GeneralForm 
-        onSubmit={this.handleSubmit} 
-        values={this.state.info}
-        onRender={this.renderForm}
-      />
-    }else{
-      formButton = (!infoAdded) ? (
-        <div >
-          <button onClick={this.renderForm} className="sectionButton" >Add Information</button>
-       </div>
-      ) : (
-        <div>
-          <button onClick={this.renderForm} className="sectionButton" >Edit Information</button>
-       </div>
-      )
+        formComponent = <GeneralForm 
+            onSubmit={handleSubmit} 
+            values={info}
+            onRender={renderForm}
+    />
+    } else {
+        formButton = (!infoAdded) ? (
+            <div >
+                <button onClick={renderForm} className="sectionButton" >Add Information</button>
+            </div>
+        ) : (
+            <div>
+                <button onClick={renderForm} className="sectionButton" >Edit Information</button>
+            </div>
+        )
     }
 
     if(infoAdded){
-      cleanButton = <div>
-          <button onClick={this.cleanInfo}>Clean</button>
-      </div>
+        cleanButton = <div>
+            <button onClick={cleanInfo}>Clean</button>
+        </div>
     }
 
     return (
-      <div className="GeneralDiv">
-        <div className="sectionTitleDiv">
-          <h2>Personal Information</h2>
-          {formButton}
-          {cleanButton}
+        <div className="GeneralDiv">
+            <div className="sectionTitleDiv">
+                <h2>Personal Information</h2>
+                {formButton}
+                {cleanButton}
+            </div>
+            {formComponent}
+            <p>Name: {name}</p>
+            <p>Last Name:{lastname}</p>
+            <p>Phone:{phone}</p>
+            <p>Email: {email}</p>
         </div>
-        {formComponent}
-        <p>Name: {name}</p>
-        <p>Last Name:{lastname}</p>
-        <p>Phone:{phone}</p>
-        <p>Email: {email}</p>
-      </div>
     )
-  }
 }
-
 
 export default General;
