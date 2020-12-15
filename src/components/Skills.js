@@ -1,124 +1,97 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import uniqid from "uniqid";
 import SkillItem from "./SkillItem";
 import SkillForm from "./SkillForm";
 
-class Skills extends Component{
-    constructor() {
-        super();
-        this.state = {
-            skill : {
-                id: uniqid(),
-                skillName: ""
-            },
-            skills: [],
-            formActive: false
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.submitSkill = this.submitSkill.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.cleanSkills = this.cleanSkills.bind(this);
-        this.renderForm = this.renderForm.bind(this);
-    }
+const Skills = () => {
+    const [skill, setSkill] = useState({ id: uniqid(), skillName: ""})
+    const [skills, setSkills] = useState([]);
+    const [formActive, setFormActive] = useState(false);
 
-    handleChange = (e) => {
+    const handleChange = (e) => {
         const {name, value} = e.target;
-        this.setState(prevState => {
-            let skill = Object.assign({}, prevState.skill);
-            skill[name] = value;
-            return {skill};
-        });
+        setSkill({...skill, [name]: value})
+
     }
 
-    submitSkill = (e) =>{
+    const submitSkill = (e) => {
         e.preventDefault();
-        const {skill} = this.state;
         let isValid = true;
         for (let key in skill){
-            if(skill[key] === "") {
+            if(skill[key] ==="") {
                 isValid = false;
             }
         }
-        if(isValid){
-            this.setState({
-                skills: [...this.state.skills, this.state.skill]
-            });
-            this.renderForm(e);
+        if(isValid) {
+            setSkills([...skills, skill]);
+            renderForm(e);
         }
     }
 
-    resetForm = () => {
-        this.setState((prevState) => {
-            let skill = Object.assign({}, prevState.skill);
-            skill["id"] = uniqid();
-            skill["skillName"] = "";
-            return { skill};
-        });
+    const resetForm = (e) => {
+        setSkill({ id: uniqid(), skillName: ""});
     }
 
-    handleDelete = (itemId) => {
-        const skills = this.state.skills.filter( skill => skill.id !== itemId);
-        this.setState({skills : skills});
+    const handleDelete = (itemId) =>{
+        const filteredSkills = skills.filter(skill => skill.id !== itemId)
+        setSkills(filteredSkills);
     }
 
-    cleanSkills = (e) => {
+    const cleanSkills = (e) =>{
         e.preventDefault();
-        this.setState({skills: []});
+        setSkills([]);
     }
 
-    renderForm = (e) => {
+    const renderForm = (e) =>{
         e.preventDefault();
-        const {formActive} = this.state;
-        this.setState({formActive : !formActive});
-        this.resetForm();
+        setFormActive(!formActive);
+        resetForm();
     }
-    
-    render() {
-        const {skill, skills, formActive} = this.state;
-        let formComponent;
-        let formButton;
-        let cleanButton;
-        if(formActive) {
-        formComponent = <SkillForm
-                skill={skill}
-                onSubmit={this.submitSkill}
-                onChange={this.handleChange}
-                onRender={this.renderForm}
-            />
-        }else{
-        formButton = <div >
-            <button onClick={this.renderForm} className="sectionButton" >Add Skill</button>
+
+    let formComponent;
+    let formButton;
+    let cleanButton;
+    if(formActive) {
+    formComponent = <SkillForm
+            skill={skill}
+            onSubmit={submitSkill}
+            onChange={handleChange}
+            onRender={renderForm}
+        />
+    }else{
+    formButton = <div >
+        <button onClick={renderForm} className="sectionButton" >Add Skill</button>
+    </div>
+    }
+
+    if(skills.length > 0){
+        cleanButton = <div>
+            <button onClick={cleanSkills}>Clean</button>
         </div>
-        }
-
-        if(skills.length > 0){
-            cleanButton = <div>
-              <button onClick={this.cleanSkills}>Clean</button>
-            </div>
-        }
-
-        return (
-            <div className="SkillsDiv">
-                <div className="sectionTitleDiv">
-                    <h2>Skills</h2>
-                    {formButton}
-                    {cleanButton}
-                </div>
-                {formComponent}
-                <div>
-                    {skills.map((skill) => {
-                        return (
-                            <SkillItem
-                                key={skill.id}
-                                skill={skill}
-                                onDelete={this.handleDelete}
-                            />
-                        )
-                    })}
-                </div>
-            </div>
-        )
     }
+
+    return (
+        <div className="SkillsDiv">
+            <div className="sectionTitleDiv">
+                <h2>Skills</h2>
+                {formButton}
+                {cleanButton}
+            </div>
+            {formComponent}
+            <div>
+                {skills.map((skill) => {
+                    return (
+                        <SkillItem
+                            key={skill.id}
+                            skill={skill}
+                            onDelete={handleDelete}
+                        />
+                    )
+                })}
+            </div>
+        </div>
+    )
+
 }
 
 export default Skills;

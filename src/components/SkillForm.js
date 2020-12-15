@@ -1,50 +1,49 @@
-import React, {Component} from "react";
+import React from "react";
 
-class SkillForm extends Component{
 
-    changeData = (e) => {
+const SkillForm = (props) => {
+    const changeData = (e) => {
         e.preventDefault();
-        this.props.onChange(e);
+        props.onChange(e);
     }
 
-    submitData = (e) =>{
+    const submitData = (e) =>{
         e.preventDefault();
-        this.props.onSubmit(e);
+        props.onSubmit(e);
     }
     
-    cancelSubmit = (e) => {
+    const cancelSubmit = (e) => {
         e.preventDefault();
-        this.props.onRender(e);
+        props.onRender(e);
     }
 
-    render() {
-        const {skill} = this.props;
+    const {skill} = props;
 
-        return (
-            <div className="formDiv">
-                <form onSubmit={this.submitData}>
-                    <div className="form-group">
-                        <label htmlFor="skillInput">Enter Skill</label>
-                        <br></br>
-                        <input
-                            onChange={this.changeData}
-                            value={skill.skillName}
-                            type="text"
-                            name="skillName"
-                        />
-                    </div>
-                    <div className="buttonsDiv">
-                        <button type="submit" >
-                            Add Skill
-                        </button>
-                        <button onClick={this.cancelSubmit}>
-                            Cancel
-                        </button>
-                    </div>
-                </form>
-            </div>
-        )
-    }
+    return (
+        <div className="formDiv">
+            <form onSubmit={submitData}>
+                <div className="form-group">
+                    <label htmlFor="skillInput">Enter Skill</label>
+                    <br></br>
+                    <input
+                        onChange={changeData}
+                        value={skill.skillName}
+                        type="text"
+                        name="skillName"
+                    />
+                </div>
+                <div className="buttonsDiv">
+                    <button type="submit" >
+                        Add Skill
+                    </button>
+                    <button onClick={cancelSubmit}>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    )
 }
+
 
 export default SkillForm;
