@@ -10,7 +10,7 @@ const Skills = () => {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setSkill({...skill, [name]: value})
+        setSkill({...skill, [name]: value});
 
     }
 
@@ -18,7 +18,7 @@ const Skills = () => {
         e.preventDefault();
         let isValid = true;
         for (let key in skill){
-            if(skill[key] ==="") {
+            if(skill[key] === "") {
                 isValid = false;
             }
         }

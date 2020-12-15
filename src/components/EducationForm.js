@@ -1,77 +1,74 @@
-import React, {Component} from "react";
+import React from "react";
 
-class EducationForm extends Component{
-
-    changeData = (e) =>{
+const EducationForm = (props) => {
+    const changeData = (e) =>{
         e.preventDefault();
-        this.props.onChange(e);
+        props.onChange(e);
     }
 
-    submitData = (e) => {
+    const submitData = (e) => {
         e.preventDefault();
-        this.props.onSubmit(e);
+        props.onSubmit(e);
     }
 
-    cancelSubmit = (e) => {
+    const cancelSubmit = (e) => {
         e.preventDefault();
-        this.props.onRender(e);
+        props.onRender(e);
     }
 
-    render() {
-        const {school} = this.props;
+    const {school} = props;
 
-        return (
-            <div className="formDiv">
-                <form onSubmit={this.submitData}>
-                    <div className="form-group">
-                        <label htmlFor="schoolInput">Enter School</label>
-                        <br></br>
-                        <input
-                            onChange={this.changeData}
-                            value={school.schoolName}
-                            type="text"
-                            name="schoolName"
-                        />
-                        <br></br>
-                        <label>Enter Career</label>
-                        <br></br>
-                        <input
-                            onChange={this.changeData}
-                            value={school.careerTitle}
-                            type="text"
-                            name="careerTitle"
-                        />
-                        <br></br>
-                        <label>Enter Initial Date</label>
-                        <br></br>
-                        <input
-                            onChange={this.changeData}
-                            value={school.initialDate}
-                            type="date"
-                            name="initialDate"
-                        />
-                        <br></br>
-                        <label>Enter Final Date</label>
-                        <br></br>
-                        <input
-                            onChange={this.changeData}
-                            value={school.endDate}
-                            type="date"
-                            name="endDate"
-                        />
-                    </div>
-                    <div className="buttonsDiv">
-                        <button type="submit" >
-                            Add School
-                        </button>
-                        <button onClick={this.cancelSubmit}>
-                            Cancel
-                        </button>
-                    </div>
-                </form>
-            </div>
-        )
-    }
+    return (
+        <div className="formDiv">
+            <form onSubmit={submitData}>
+                <div className="form-group">
+                    <label htmlFor="schoolInput">Enter School</label>
+                    <br></br>
+                    <input
+                        onChange={changeData}
+                        value={school.schoolName}
+                        type="text"
+                        name="schoolName"
+                    />
+                    <br></br>
+                    <label>Enter Career</label>
+                    <br></br>
+                    <input
+                        onChange={changeData}
+                        value={school.careerTitle}
+                        type="text"
+                        name="careerTitle"
+                    />
+                    <br></br>
+                    <label>Enter Initial Date</label>
+                    <br></br>
+                    <input
+                        onChange={changeData}
+                        value={school.initialDate}
+                        type="date"
+                        name="initialDate"
+                    />
+                    <br></br>
+                    <label>Enter Final Date</label>
+                    <br></br>
+                    <input
+                        onChange={changeData}
+                        value={school.endDate}
+                        type="date"
+                        name="endDate"
+                    />
+                </div>
+                <div className="buttonsDiv">
+                    <button type="submit" >
+                        Add School
+                    </button>
+                    <button onClick={cancelSubmit}>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    )
 }
 
 export default EducationForm;

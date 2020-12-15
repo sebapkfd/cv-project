@@ -1,107 +1,85 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import uniqid from "uniqid";
 import ExperienceItem from "./ExperienceItem";
 import ExperienceForm from "./ExperienceForm";
 
-class Experience extends Component{
-  constructor() {
-    super();
-    this.state = {
-      company: {
+const Experience = () => {
+    const [company, setCompany] = useState({
         id: uniqid(),
         companyName: "",
         positionTitle: "",
         mainTasks: "",
         initialDate: "",
-        endDate: "",
-      },
-      companies: [],
-      formActive : false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.submitCompany = this.submitCompany.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.cleanExperience = this.cleanExperience.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-  }
+        endDate: ""
+    });
+    const [companies, setCompanies] = useState([]);
+    const [formActive, setFormActive] = useState(false);
 
-  handleChange = (e) => {
-    const {name, value} = e.target;
-    this.setState(prevState => {
-      let company = Object.assign({}, prevState.company);
-      company[name] = value;
-      return { company };                                
-    })
-  }
-
-  submitCompany = (e) =>{
-    e.preventDefault();
-    const {company}  = this.state;
-    let isValid = true;
-    for (let key in company){
-      if (company[key] === "") {
-      isValid = false;
-      }
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setCompany({...company, [name]: value});
     }
-    if(isValid){
-      this.setState({
-        companies: [...this.state.companies, this.state.company]
-      });
-      this.renderForm(e);
+
+    const submitCompany = (e) =>{
+        e.preventDefault();
+        let isValid = true;
+        for (let key in company){
+            if (company[key] === "") {
+                isValid = false;
+            }
+        }
+        if(isValid){
+            setCompanies([...companies, company]);
+            renderForm(e);
+        }
     }
-  }
 
-  resetForm = () => {
-    this.setState((prevState) => {
-      let company = Object.assign({}, prevState.company);
-      company["id"] = uniqid();
-      company["companyName"] = "";
-      company["positionTitle"] = "";
-      company["mainTasks"] = "";
-      company["initialDate"] = "";
-      company["endDate"] = "";
-      return { company };                       
-    })
-  }
+    const resetForm = () => {
+        setCompany({
+            id: uniqid(),
+            companyName: "",
+            positionTitle: "",
+            mainTasks: "",
+            initialDate: "",
+            endDate: ""
+        });
+    }
 
-  handleDelete = (itemId) => {
-    const companies = this.state.companies.filter( company => company.id !== itemId);
-    this.setState({ companies : companies});
-  }
+    const handleDelete = (itemId) => {
+        const filteredCompanies = companies.filter( company => company.id !== itemId);
+        setCompanies(filteredCompanies);
+    }
 
-  cleanExperience = (e) => {
-    e.preventDefault();
-    this.setState({companies: []});
-  }
+    const cleanExperience = (e) => {
+        e.preventDefault();
+        setCompanies([]);
+    }
 
-  renderForm = (e) => {
-    e.preventDefault();
-    const {formActive} = this.state;
-    this.setState({formActive : !formActive});
-    this.resetForm();
-  }
+    const renderForm = (e) => {
+        e.preventDefault();
+        setFormActive(!formActive);
+        resetForm();
+    }
 
-  render() {
-    const {company, companies, formActive} = this.state;
     let formComponent;
     let formButton;
     let cleanButton;
     if(formActive) {
       formComponent = <ExperienceForm
         company={company}
-        onSubmit={this.submitCompany}
-        onChange={this.handleChange}
-        onRender={this.renderForm}
+        onSubmit={submitCompany}
+        onChange={handleChange}
+        onRender={renderForm}
       />
     }else{
       formButton = <div>
-        <button onClick={this.renderForm} className="sectionButton" >Add Job</button>
+        <button onClick={renderForm} className="sectionButton" >Add Job</button>
       </div>
     }
 
     if(companies.length > 0) {
       cleanButton = <div>
-        <button onClick={this.cleanExperience}>Clean</button>
+        <button onClick={cleanExperience}>Clean</button>
       </div>
     }
 
@@ -120,15 +98,142 @@ class Experience extends Component{
                   <ExperienceItem 
                     key={company.id}
                     company={company}
-                    onDelete={this.handleDelete}
+                    onDelete={handleDelete}
                   />
               )
           })}
         </div>
       </div>
     )
-  }
 }
+
+
+// class Experience extends Component{
+//   constructor() {
+//     super();
+//     state = {
+//       company: {
+//         id: uniqid(),
+//         companyName: "",
+//         positionTitle: "",
+//         mainTasks: "",
+//         initialDate: "",
+//         endDate: "",
+//       },
+//       companies: [],
+//       formActive : false
+//     };
+//     handleChange = handleChange.bind(;
+//     submitCompany = submitCompany.bind(;
+//     handleDelete = handleDelete.bind(;
+//     cleanExperience = cleanExperience.bind(;
+//     renderForm = renderForm.bind(;
+//   }
+
+//   handleChange = (e) => {
+//     const {name, value} = e.target;
+//     setState(prevState => {
+//       let company = Object.assign({}, prevState.company);
+//       company[name] = value;
+//       return { company };                                
+//     })
+//   }
+
+//   submitCompany = (e) =>{
+//     e.preventDefault();
+//     const {company}  = state;
+//     let isValid = true;
+//     for (let key in company){
+//       if (company[key] === "") {
+//       isValid = false;
+//       }
+//     }
+//     if(isValid){
+//       setState({
+//         companies: [...state.companies, state.company]
+//       });
+//       renderForm(e);
+//     }
+//   }
+
+//   resetForm = () => {
+//     setState((prevState) => {
+//       let company = Object.assign({}, prevState.company);
+//       company["id"] = uniqid();
+//       company["companyName"] = "";
+//       company["positionTitle"] = "";
+//       company["mainTasks"] = "";
+//       company["initialDate"] = "";
+//       company["endDate"] = "";
+//       return { company };                       
+//     })
+//   }
+
+//   handleDelete = (itemId) => {
+//     const companies = state.companies.filter( company => company.id !== itemId);
+//     setState({ companies : companies});
+//   }
+
+//   cleanExperience = (e) => {
+//     e.preventDefault();
+//     setState({companies: []});
+//   }
+
+//   renderForm = (e) => {
+//     e.preventDefault();
+//     const {formActive} = state;
+//     setState({formActive : !formActive});
+//     resetForm();
+//   }
+
+//   render() {
+//     const {company, companies, formActive} = state;
+//     let formComponent;
+//     let formButton;
+//     let cleanButton;
+//     if(formActive) {
+//       formComponent = <ExperienceForm
+//         company={company}
+//         onSubmit={submitCompany}
+//         onChange={handleChange}
+//         onRender={renderForm}
+//       />
+//     }else{
+//       formButton = <div>
+//         <button onClick={renderForm} className="sectionButton" >Add Job</button>
+//       </div>
+//     }
+
+//     if(companies.length > 0) {
+//       cleanButton = <div>
+//         <button onClick={cleanExperience}>Clean</button>
+//       </div>
+//     }
+
+//     return (
+//       <div className="ExperienceDiv">
+//         <div className="sectionTitleDiv">
+//           <h2>Experience</h2>
+//           {formButton}
+//           {cleanButton}
+//         </div>
+//         {formComponent}
+        
+//         <div>
+//           {companies.map((company) => {
+//               return (
+//                   <ExperienceItem 
+//                     key={company.id}
+//                     company={company}
+//                     onDelete={handleDelete}
+//                   />
+//               )
+//           })}
+//         </div>
+//       </div>
+//     )
+//   }
+// }
 
 
 export default Experience;

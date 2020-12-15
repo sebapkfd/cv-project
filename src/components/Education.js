@@ -1,105 +1,84 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import uniqid from "uniqid";
 import EducationItem from "./EducationItem";
 import EducationForm from "./EducationForm";
 
-class Education extends Component{
-  constructor(){
-    super();
-    this.state = {
-      school: {
+const Education = () => {
+    const [school, setSchool] = useState({
         id: uniqid(),
         schoolName: "",
         careerTitle: "",
         initialDate: "",
         endDate: ""
-      },
-      schools: [],
-      formActive: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.submitSchool = this.submitSchool.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.cleanEducation = this.cleanEducation.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-  }
-  
-  handleChange = (e) => {
-    const {name, value} = e.target;
-    this.setState(prevState => {
-      let school = Object.assign({}, prevState.school);
-      school[name] = value;
-      return { school };
-    });
-  }
+    })
+    const [schools, setSchools] = useState([]);
+    const [formActive, setFormActive] = useState(false);
 
-  submitSchool = (e) =>{
-    e.preventDefault();
-    const {school} = this.state;
-    let isValid = true;
-    for (let key in school){
-      if (school[key] === "") {
-        isValid = false;
-      }
+      
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setSchool({...school, [name]: value});
     }
-    if(isValid){
-      this.setState({
-        schools: [...this.state.schools, this.state.school]
-      });
-      this.renderForm(e);
+
+    const submitSchool = (e) =>{
+        e.preventDefault();
+        let isValid = true;
+        for (let key in school){
+            if (school[key] === "") {
+                isValid = false;
+            }
+        }
+        if(isValid){
+            setSchools([...schools, school]);
+            renderForm(e);
+        }
     }
-  }
 
-  resetForm = () => {
-    this.setState((prevState) => {
-      let school = Object.assign({}, prevState.school);
-      school["id"] = uniqid();
-      school["schoolName"] = "";
-      school["careerTitle"] = "";
-      school["initialDate"] = "";
-      school["endDate"] = "";
-      return { school };
-    });
-  }
+    const resetForm = () => {
+        setSchool({
+            id: uniqid(),
+            schoolName: "",
+            careerTitle: "",
+            initialDate: "",
+            endDate: ""
+        });
+    }
 
-  handleDelete = (itemId) => {
-    const schools = this.state.schools.filter( school => school.id !== itemId);
-    this.setState({schools : schools});
-  }
+    const handleDelete = (itemId) => {
+        const filteredSchools = schools.filter( school => school.id !== itemId);
+        setSchools(filteredSchools);
+    }
 
-  cleanEducation = (e) =>{
-    e.preventDefault();
-    this.setState({schools: [] });
-  }
+    const cleanEducation = (e) =>{
+        e.preventDefault();
+        setSchools([]);
+    }
 
-  renderForm = (e) => {
-    e.preventDefault();
-    const {formActive} = this.state;
-    this.setState({formActive : !formActive});
-    this.resetForm();
-  }
+    const renderForm = (e) => {
+        e.preventDefault();
+        setFormActive(!formActive);
+        resetForm();
+    }
 
-  render(){
-    const {school, schools, formActive} = this.state;
     let formComponent;
     let formButton;
     let cleanButton;
     if(formActive) {
       formComponent = <EducationForm
         school={school}
-        onSubmit={this.submitSchool}
-        onChange={this.handleChange}
-        onRender={this.renderForm}
+        onSubmit={submitSchool}
+        onChange={handleChange}
+        onRender={renderForm}
       />
     }else{
       formButton = <div>
-        <button onClick={this.renderForm} className="sectionButton" >Add School</button>
+        <button onClick={renderForm} className="sectionButton" >Add School</button>
       </div>
     }
 
     if(schools.length > 0){
       cleanButton = <div>
-        <button onClick={this.cleanEducation}>Clean</button>
+        <button onClick={cleanEducation}>Clean</button>
       </div>
     }
 
@@ -118,14 +97,13 @@ class Education extends Component{
               <EducationItem
                 key={school.id}
                 school={school}
-                onDelete={this.handleDelete}
+                onDelete={handleDelete}
               />
             )
           })}
         </div>
       </div>
-  )}
+    );
 }
-
 
 export default Education;
